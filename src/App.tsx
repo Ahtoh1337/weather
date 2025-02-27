@@ -15,7 +15,7 @@ function App() {
         <div className="mt-17 bg-sky-900">
           <Routes>
             <Route path="/" element={<IndexCityWeather />} />
-            <Route path="find" element={<FindCity />} />
+            <Route path=":id" element={<FindCity />} />
           </Routes>
         </div>
       </BrowserRouter>

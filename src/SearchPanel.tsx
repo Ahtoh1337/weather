@@ -43,7 +43,7 @@ export default function SearchPanel() {
 function SearchListItem({ city, onClick }: { city: City, onClick: () => void }) {
     return <NavLink className="block p-2.5 text-sm font-bold
         not-last:border-b-1 border-sky-600"
-        to={`find?name=${city.name}&id=${city.id}`}
+        to={String(city.id)}
         onClick={onClick}>
         {city.name}
         <span className="text-sky-300 font-normal">

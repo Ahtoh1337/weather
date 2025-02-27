@@ -6,6 +6,10 @@ export interface City {
     longitude: number,
 }
 
-export interface CityResponse {
+export interface CityCollectionResponse {
     data: City[]
+}
+
+export interface CityResponse {
+    data: City
 }

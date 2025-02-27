@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { wait, toIsoCoord } from "./utils";
-import { CityResponse } from "./types";
+import { CityCollectionResponse, CityResponse } from "./types";
 
 export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
     return useQuery({
         queryKey: ["cities", namePrefix.toLowerCase().trim().replace(/\s+/g, "%20")],
-        queryFn: async ({ signal }) => {
-            const str = namePrefix.trim();
+        queryFn: async ({ signal, queryKey }) => {
+            const str = queryKey[1];
             if (str === "")
                 return { data: [] };
 
@@ -29,9 +29,24 @@ export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
             if (!response.ok)
                 throw new Error(`Network error (${response.status} ${response.statusText})`);
 
-            return await response.json() as CityResponse;
+            return await response.json() as CityCollectionResponse;
         }
     });
+}
+
+export function useCityById(id: number) {
+    return useQuery({
+        queryKey: ["cityId", id],
+        queryFn: async ({ queryKey }) => {
+            const response = await fetch(`${import.meta.env.VITE_CITY_API}/geo/places/${queryKey[1]}`);
+
+            if (!response.ok)
+                throw new Error(`Network error (${response.status} ${response.statusText})`);
+
+            return await response.json() as CityResponse;
+        },
+        retry: false
+    })
 }
 
 export function useUserLocation() {
@@ -56,7 +71,7 @@ export function useUserLocation() {
                 if (!response.ok)
                     throw new Error(`Network error (${response.status} ${response.statusText})`);
 
-                const result = await response.json() as CityResponse;
+                const result = await response.json() as CityCollectionResponse;
 
                 if (result.data.length === 0) {
                     return {
