@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useCityById } from "./hooks";
 import { useNavigate, useParams } from "react-router";
+import ForecastMain from "./ForecastMain";
 
 export default function FindCity() {
     const navigate = useNavigate();
@@ -14,7 +15,11 @@ export default function FindCity() {
         }
     }, [id, city.isError])
 
-    return <pre>
-        {JSON.stringify(city, null, 2)}
-    </pre>
+    if (city.isPending)
+        return <h1>Loading...</h1>
+
+    if (city.isError)
+        return <h1>Error</h1>
+
+    return <ForecastMain city={city.data.data} />
 }

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { wait, toIsoCoord } from "./utils";
-import { CityCollectionResponse, CityResponse } from "./types";
+import { CityCollectionResponse, CityResponse, CurrentWeatherGeneralInfo, Place } from "./types";
 
 export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
     return useQuery({
@@ -49,9 +49,9 @@ export function useCityById(id: number) {
     })
 }
 
-export function useUserLocation() {
+export function useUserCity() {
     return useQuery({
-        queryKey: ["userLocation"],
+        queryKey: ["userCity"],
         queryFn: async () => {
             return new Promise<GeolocationPosition>((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(data => resolve(data), error => reject(error));
@@ -86,4 +86,34 @@ export function useUserLocation() {
         },
         retry: false
     });
+}
+
+export function useCurrentWeather(place: Place) {
+    return useQuery({
+        queryKey: ["current", place.latitude, place.longitude],
+        queryFn: async ({ queryKey }) => {
+            const paramString = [
+                `latitude=${queryKey[1]}`,
+                `longitude=${queryKey[2]}`,
+                "current=" + [
+                    "temperature_2m",
+                    "relative_humidity_2m",
+                    "apparent_temperature",
+                    "is_day",
+                    "precipitation",
+                    "cloud_cover",
+                    "wind_speed_10m",
+                    "wind_direction_10m"
+                ].join(","),
+                "timezone=auto"
+            ].join("&")
+
+            const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/forecast?${paramString}`);
+
+            if (!response.ok)
+                throw new Error(`Network error (${response.status} ${response.statusText})`);
+
+            return await response.json() as CurrentWeatherGeneralInfo;
+        }
+    })
 }

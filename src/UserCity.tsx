@@ -1,8 +1,8 @@
 import ForecastMain from "./ForecastMain";
-import { useUserLocation } from "./hooks";
+import { useUserCity } from "./hooks";
 
 export default function UserCity() {
-    const city = useUserLocation();
+    const city = useUserCity();
 
     if (city.isPending)
         return <h1>Loading...</h1>
