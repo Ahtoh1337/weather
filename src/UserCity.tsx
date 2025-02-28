@@ -1,7 +1,7 @@
 import ForecastMain from "./ForecastMain";
 import { useUserLocation } from "./hooks";
 
-export default function IndexCityWeather() {
+export default function UserCity() {
     const city = useUserLocation();
 
     if (city.isPending)
