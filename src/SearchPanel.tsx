@@ -16,19 +16,19 @@ export default function SearchPanel() {
                     className="p-2 flex-1
                 bg-sky-900 rounded-md
                 border-2 border-sky-600 focus:border-sky-400
-                outline-none placeholder:text-sky-600"
+                outline-none"
                     type="search"
                     value={searchText}
                     onChange={e => setSearchText(e.target.value)}
                     placeholder="Search..." />
-                <div className={`bg-sky-900 rounded-md drop-shadow-lg
-                ${searchText === "" ||
-                        cities.isError ? " hidden" : ""}`}>
-                    {cities.isPending && <div className="p-5 text-4xl flex items-center justify-center">
-                        <div className="animate-spin">
-                            🌀
-                        </div>
+                <div className={`bg-sky-900 rounded-md drop-shadow-lg`}>
+                    {cities.isPending &&
+                    <div className="text-center pb-4.5 pt-3 text-4xl">
+                        <span className="inline-block text-sky-50/70 animate-pulse">
+                            ●●●
+                        </span>
                     </div>}
+
                     {cities.isSuccess && cities.data.data.map(c =>
                         <SearchListItem
                             key={c.id}
