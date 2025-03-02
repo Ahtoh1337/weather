@@ -1,4 +1,5 @@
 import { useCurrentWeather } from "./hooks";
+import Icon from "./Icons/Icon";
 import { City } from "./types";
 
 export default function ForecastMain({ city }: { city: City }) {
@@ -10,7 +11,13 @@ export default function ForecastMain({ city }: { city: City }) {
     if (weather.isError)
         return <h1>Error...</h1>
 
-    return <pre>
-        {JSON.stringify(weather.data, null, 2)}
-    </pre>
+    return <div>
+        <Icon icon="💧">
+            {weather.data.current.relative_humidity_2m}
+            {weather.data.current_units.relative_humidity_2m}
+        </Icon>
+        <pre>
+            {JSON.stringify(weather.data, null, 2)}
+        </pre>
+    </div>
 }

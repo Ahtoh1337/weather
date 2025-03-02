@@ -21,7 +21,7 @@ export default function SearchPanel() {
                     value={searchText}
                     onChange={e => setSearchText(e.target.value)}
                     placeholder="Search..." />
-                <div className={`bg-sky-900 rounded-md drop-shadow-lg`}>
+                <div className="bg-sky-900 rounded-md drop-shadow-lg">
                     {cities.isPending &&
                     <div className="text-center pb-4.5 pt-3 text-4xl">
                         <span className="inline-block text-sky-50/70 animate-pulse">

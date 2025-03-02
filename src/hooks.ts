@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { wait, toIsoCoord } from "./utils";
-import { CityCollectionResponse, CityResponse, CurrentWeatherGeneralInfo, Place } from "./types";
+import { CityCollectionResponse, CityResponse, CurrentWeatherInfo, Place } from "./types";
 
 export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
     return useQuery({
@@ -99,7 +99,6 @@ export function useCurrentWeather(place: Place) {
                     "temperature_2m",
                     "relative_humidity_2m",
                     "apparent_temperature",
-                    "is_day",
                     "precipitation",
                     "cloud_cover",
                     "wind_speed_10m",
@@ -113,7 +112,7 @@ export function useCurrentWeather(place: Place) {
             if (!response.ok)
                 throw new Error(`Network error (${response.status} ${response.statusText})`);
 
-            return await response.json() as CurrentWeatherGeneralInfo;
+            return await response.json() as CurrentWeatherInfo;
         }
     })
 }

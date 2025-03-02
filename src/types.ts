@@ -9,7 +9,7 @@ export interface City extends Place {
     country?: string,
 }
 
-export interface CurrentWeatherGeneralInfo extends Place {
+export interface CurrentWeatherInfo extends Place {
     utc_offset_seconds: number,
     timezone_abbreviation: string,
     current_units: CurrentWeatherUnits,
@@ -21,7 +21,6 @@ export interface CurrentWeatherUnits {
     temperature_2m: string,
     relative_humidity_2m: string,
     apparent_temperature: string,
-    is_day: string,
     precipitation: string,
     cloud_cover: string,
     wind_speed_10m: string,
@@ -33,7 +32,6 @@ export interface CurrentWeather {
     temperature_2m: number,
     relative_humidity_2m: number,
     apparent_temperature: number,
-    is_day: number,
     precipitation: number,
     cloud_cover: number,
     wind_speed_10m: number,
