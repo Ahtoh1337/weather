@@ -5,7 +5,7 @@ import { toShortTime } from "../utils";
 
 export default function CurrentWeatherForecast({ weather }: { weather: UseQueryResult<CurrentWeatherInfo, Error> }) {
 
-    return <div>
+    return <div className="pb-3">
         <div className="flex justify-between items-baseline">
             <h2 className="text-2xl font-bold">
                 Current
@@ -16,11 +16,11 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
                     : <>...</>}
             </h2>
         </div>
-        <div className="grid grid-cols-4 p-4 gap-x-3 gap-y-5
-        bg-sky-900 rounded-md">
+        <div className="flex py-4 px-2
+        bg-sky-900 rounded-md drop-shadow-md">
             {weather.isPending && <>...</>}
             {weather.isSuccess && <>
-                <div className="flex flex-col
+                <div className="flex flex-col flex-2
                 row-span-2 col-span-2
                 items-center justify-center gap-1">
                     <div>
@@ -39,10 +39,12 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
                         °C
                     </div>
                 </div>
-                <CloudIcon value={weather.data.current.cloud_cover} />
-                <HumidityIcon value={weather.data.current.relative_humidity_2m} />
-                <PrecipitationIcon value={weather.data.current.precipitation} />
-                <WindIcon speed={weather.data.current.wind_speed_10m} direction={weather.data.current.wind_direction_10m} />
+                <div className="grid grid-cols-2 gap-y-4 flex-3">
+                    <CloudIcon value={weather.data.current.cloud_cover} />
+                    <HumidityIcon value={weather.data.current.relative_humidity_2m} />
+                    <PrecipitationIcon value={weather.data.current.precipitation} />
+                    <WindIcon speed={weather.data.current.wind_speed_10m} direction={weather.data.current.wind_direction_10m} />
+                </div>
             </>}
         </div>
     </div>

@@ -1,3 +1,4 @@
+import { toShortTime } from "../utils"
 import Icon from "./Icon"
 
 type WeatherIconProps = {
@@ -14,6 +15,12 @@ export function HumidityIcon({ value, vertical = true }: WeatherIconProps) {
 export function PrecipitationIcon({ value, vertical = true  }: WeatherIconProps) {
     return <Icon icon="☔️" vertical={vertical}>
         {value} mm
+    </Icon>
+}
+
+export function PrecipitationProbIcon({ value, vertical = true  }: WeatherIconProps) {
+    return <Icon icon="🌧" vertical={vertical}>
+        {value}%
     </Icon>
 }
 
@@ -37,13 +44,13 @@ export function CloudIcon({ value, vertical = true  }: WeatherIconProps) {
 
 export function SunriseIcon({ value, vertical = true  }: WeatherIconProps) {
     return <Icon icon="🌅" vertical={vertical}>
-        {new Date(value).toTimeString()}
+        {toShortTime(new Date(value))}
     </Icon>
 }
 
 export function SunsetIcon({ value, vertical = true  }: WeatherIconProps) {
     return <Icon icon="🌆" vertical={vertical}>
-        {new Date(value).toTimeString()}
+        {toShortTime(new Date(value))}
     </Icon>
 }
 
