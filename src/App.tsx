@@ -12,7 +12,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SearchPanel />
-        <div className="mt-17 bg-sky-900">
+        <div className="mt-12">
           <Routes>
             <Route path="/" element={<UserCity />} />
             <Route path=":id" element={<FindCity />} />

@@ -33,3 +33,41 @@ export function parseBoolean(str: string) {
 export function toIsoCoord(num: number): string {
     return `${num >= 0 ? "%2B" : ""}${num}`;
 }
+
+export function offsetTime(offset: number) {
+    const date = new Date();
+    date.setSeconds(date.getSeconds() + offset);
+    return date;
+}
+
+export function toShortTime(date: Date): string {
+    return `${date.getHours()}:${String(date.getSeconds()).padStart(2, "0")}`;
+}
+
+const weekDays = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+];
+const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+]
+
+export function toShortDate(date: Date): string {
+    return `${weekDays[date.getDay()]} ${String(date.getDate()).padStart(2, "0")} ${months[date.getMonth()]}`
+}

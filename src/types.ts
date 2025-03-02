@@ -5,8 +5,8 @@ export interface Place {
 
 export interface City extends Place {
     id: number
-    name?: string,
-    country?: string,
+    name: string,
+    country: string,
 }
 
 export interface CityCollectionResponse {
@@ -30,6 +30,7 @@ export interface CurrentWeatherInfo extends WeatherInfo {
 }
 
 export interface CurrentWeatherUnits {
+    time: string,
     interval: string,
     temperature_2m: string,
     relative_humidity_2m: string,
@@ -41,6 +42,7 @@ export interface CurrentWeatherUnits {
 }
 
 export interface CurrentWeather {
+    time: string,
     interval: number,
     temperature_2m: number,
     relative_humidity_2m: number,
