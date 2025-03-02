@@ -9,9 +9,22 @@ export interface City extends Place {
     country?: string,
 }
 
-export interface CurrentWeatherInfo extends Place {
+export interface CityCollectionResponse {
+    data: City[]
+}
+
+export interface CityResponse {
+    data: City
+}
+
+export interface WeatherInfo extends Place {
     utc_offset_seconds: number,
     timezone_abbreviation: string,
+}
+
+
+
+export interface CurrentWeatherInfo extends WeatherInfo {
     current_units: CurrentWeatherUnits,
     current: CurrentWeather
 }
@@ -38,10 +51,72 @@ export interface CurrentWeather {
     wind_direction_10m: number
 }
 
-export interface CityCollectionResponse {
-    data: City[]
+
+
+export interface DailyWeatherInfo extends WeatherInfo {
+    daily_units: DailyWeatherUnits,
+    daily: DailyWeather
 }
 
-export interface CityResponse {
-    data: City
+export interface DailyWeatherUnits {
+    time: string
+    temperature_2m_max: string
+    temperature_2m_min: string
+    apparent_temperature_max: string
+    apparent_temperature_min: string
+    sunrise: string
+    sunset: string
+    uv_index_max: string
+    precipitation_sum: string
+    precipitation_probability_max: string
+    wind_speed_10m_max: string
+    wind_direction_10m_dominant: string
+}
+
+export interface DailyWeather {
+    time: string[]
+    temperature_2m_max: number[]
+    temperature_2m_min: number[]
+    apparent_temperature_max: number[]
+    apparent_temperature_min: number[]
+    sunrise: string[]
+    sunset: string[]
+    uv_index_max: number[]
+    precipitation_sum: number[]
+    precipitation_probability_max: number[]
+    wind_speed_10m_max: number[]
+    wind_direction_10m_dominant: number[]
+}
+
+
+
+export interface HourlyWeatherInfo extends WeatherInfo {
+    hourly_units: HourlyWeatherUnits,
+    hourly: HourlyWeather
+}
+
+export interface HourlyWeatherUnits {
+    time: string
+    temperature_2m: string
+    relative_humidity_2m: string
+    dew_point_2m: string
+    apparent_temperature: string
+    precipitation_probability: string
+    cloud_cover: string
+    wind_speed_80m: string
+    wind_direction_80m: string
+    uv_index: string
+}
+
+export interface HourlyWeather {
+    time: string[]
+    temperature_2m: number[]
+    relative_humidity_2m: number[]
+    dew_point_2m: number[]
+    apparent_temperature: number[]
+    precipitation_probability: number[]
+    cloud_cover: number[]
+    wind_speed_80m: number[]
+    wind_direction_80m: number[]
+    uv_index: number[]
 }

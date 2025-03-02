@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { wait, toIsoCoord } from "./utils";
-import { CityCollectionResponse, CityResponse, CurrentWeatherInfo, Place } from "./types";
+import { CityCollectionResponse, CityResponse, CurrentWeatherInfo, DailyWeatherInfo, HourlyWeatherInfo, Place } from "./types";
 
 export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
     return useQuery({
@@ -113,6 +113,72 @@ export function useCurrentWeather(place: Place) {
                 throw new Error(`Network error (${response.status} ${response.statusText})`);
 
             return await response.json() as CurrentWeatherInfo;
+        },
+        refetchInterval: 900_000
+    })
+}
+
+export function useDailyWeather(place: Place) {
+    return useQuery({
+        queryKey: ["daily", place.latitude, place.longitude],
+        queryFn: async ({ queryKey }) => {
+            const paramString = [
+                `latitude=${queryKey[1]}`,
+                `longitude=${queryKey[2]}`,
+                "daily=" + [
+                    "temperature_2m_max",
+                    "temperature_2m_min",
+                    "apparent_temperature_max",
+                    "apparent_temperature_min",
+                    "sunrise",
+                    "sunset",
+                    "uv_index_max",
+                    "precipitation_sum",
+                    "precipitation_probability_max",
+                    "wind_speed_10m_max",
+                    "wind_direction_10m_dominant"
+                ].join(","),
+                "timezone=auto"
+            ].join("&")
+
+            const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/forecast?${paramString}`);
+
+            if (!response.ok)
+                throw new Error(`Network error (${response.status} ${response.statusText})`);
+
+            return await response.json() as DailyWeatherInfo;
+        }
+    });
+}
+
+export function useHourlyWeather(place: Place) {
+    return useQuery({
+        queryKey: ["hourly", place.latitude, place.longitude],
+        queryFn: async ({ queryKey }) => {
+            const paramString = [
+                `latitude=${queryKey[1]}`,
+                `longitude=${queryKey[2]}`,
+                "hourly=" + [
+                    "temperature_2m",
+                    "relative_humidity_2m",
+                    "dew_point_2m",
+                    "apparent_temperature",
+                    "precipitation_probability",
+                    "cloud_cover",
+                    "wind_speed_80m",
+                    "wind_direction_80m",
+                    "uv_index",
+                ].join(","),
+                "timezone=auto",
+                "forecast_days=3"
+            ].join("&");
+
+            const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/forecast?${paramString}`);
+
+            if (!response.ok)
+                throw new Error(`Network error (${response.status} ${response.statusText})`);
+
+            return await response.json() as HourlyWeatherInfo;
         }
     })
 }

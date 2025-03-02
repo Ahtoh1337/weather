@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useCityById } from "./hooks";
 import { useNavigate, useParams } from "react-router";
-import ForecastMain from "./ForecastMain";
+import ForecastMain from "./Forecast/ForecastMain";
 
 export default function FindCity() {
     const navigate = useNavigate();
@@ -21,5 +21,5 @@ export default function FindCity() {
     if (city.isError)
         return <h1>Error</h1>
 
-    return <ForecastMain city={city.data.data} />
+    return <ForecastMain place={city.data.data} />
 }

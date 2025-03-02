@@ -1,4 +1,4 @@
-import ForecastMain from "./ForecastMain";
+import ForecastMain from "./Forecast/ForecastMain";
 import { useUserCity } from "./hooks";
 
 export default function UserCity() {
@@ -10,5 +10,5 @@ export default function UserCity() {
     if (city.isError)
         return <h1>Error: {JSON.stringify(city.error)}</h1>
 
-    return <ForecastMain city={city.data} />
+    return <ForecastMain place={city.data} />
 }
