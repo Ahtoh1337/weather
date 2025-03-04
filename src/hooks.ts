@@ -13,14 +13,14 @@ export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
             const paramString = [
                 `namePrefix=${str}`,
                 "types=city",
-                "sort=-population,+name",
+                "sort=-population,%2Bname",
                 "limit=5",
                 "offset=0"
             ].join("&");
 
             await wait(waitTime);
 
-            const response = await fetch(`${import.meta.env.VITE_CITY_API}/geo/cities?${paramString}`,
+            const response = await fetch(`${import.meta.env.VITE_CITY_API}/cities?${paramString}`,
                 {
                     signal
                 }
@@ -38,7 +38,7 @@ export function useCityById(id: number) {
     return useQuery({
         queryKey: ["cityId", id],
         queryFn: async ({ queryKey }) => {
-            const response = await fetch(`${import.meta.env.VITE_CITY_API}/geo/places/${queryKey[1]}`);
+            const response = await fetch(`${import.meta.env.VITE_CITY_API}/cityid?id=${queryKey[1]}`);
 
             if (!response.ok)
                 throw new Error(`Network error (${response.status} ${response.statusText})`);
@@ -66,7 +66,7 @@ export function useUserCity() {
                     `location=${toIsoCoord(coords.latitude)}${toIsoCoord(coords.longitude)}`
                 ].join("&")
 
-                const response = await fetch(`${import.meta.env.VITE_CITY_API}/geo/places?${paramString}`);
+                const response = await fetch(`${import.meta.env.VITE_CITY_API}/places?${paramString}`);
 
                 if (!response.ok)
                     throw new Error(`Network error (${response.status} ${response.statusText})`);
