@@ -89,3 +89,10 @@ export function toAltDateString(date: Date): string {
 export function toShortDateString(date: Date): string {
     return `${months[date.getMonth()]} ${date.getDate()} ${weekDays[date.getDay()]}`
 }
+
+export function groupBy<T, K extends keyof any>(arr: T[], key: (i: T) => K) {
+    return arr.reduce((groups, item, index) => {
+        (groups[key(item)] ||= []).push([index, item]);
+        return groups;
+    }, {} as Record<K, [number, T][]>);
+}

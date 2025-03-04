@@ -1,12 +1,12 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { DailyWeatherInfo } from "../types";
-import { SunriseIcon, SunsetIcon, } from "../Icons/WeatherIcons";
+import { SunriseIcon, SunsetIcon, WindText, } from "../Icons/WeatherIcons";
 
 export default function TodayWeatherForecast({ weather }: { weather: UseQueryResult<DailyWeatherInfo, Error> }) {
     const data = weather.isSuccess
         ? weather.data.daily
         : null!;
-    
+
     return <div className="pb-3">
         <h2 className="text-2xl font-bold">
             Today
@@ -73,8 +73,7 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
                             <tr>
                                 <th scope="row" className="text-left py-1">💨 Max Wind</th>
                                 <td className="text-right">
-                                    {data.wind_speed_10m_max[0]} km/h,{" "}
-                                    {data.wind_direction_10m_dominant[0]}°
+                                    <WindText speed={data.wind_speed_10m_max[0]} direction={data.wind_direction_10m_dominant[0]} />
                                 </td>
                             </tr>
                         </tbody>

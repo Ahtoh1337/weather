@@ -1,8 +1,8 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { DailyWeatherInfo, DailyWeather } from "../types";
 import { useState } from "react";
-import { toAltDateString, toShortDateString } from "../utils";
-import { PrecipitationIcon, PrecipitationProbIcon, SunriseIcon, SunsetIcon, UVIndexIcon, WindIcon } from "../Icons/WeatherIcons";
+import { toShortDateString } from "../utils";
+import { PrecipitationProbIcon, SunriseIcon, SunsetIcon, UVIndexIcon, WindIcon } from "../Icons/WeatherIcons";
 
 export default function DailyWeatherForecast({ weather }: { weather: UseQueryResult<DailyWeatherInfo, Error> }) {
     const [expand, setExpand] = useState<number | null>(null);
@@ -39,15 +39,21 @@ export default function DailyWeatherForecast({ weather }: { weather: UseQueryRes
     </div>
 }
 
-function DailyListItem({ data, index, isOpen, onItemToggle }:
-    { data: DailyWeather, index: number, isOpen: boolean, onItemToggle: () => void }) {
-    return <div className="group">
-        <button className="w-full flex px-2 py-2"
+export type WeatherListItemProps<T> = {
+    data: T,
+    index: number,
+    isOpen: boolean,
+    onItemToggle: () => void
+}
+
+function DailyListItem({ data, index, isOpen, onItemToggle }: WeatherListItemProps<DailyWeather>) {
+    return <>
+        <button className="w-full flex px-2 py-2 gap-3"
             onClick={onItemToggle}>
-            <div className="flex-1 text-left font-bold">
+            <div className="flex-3 text-left font-bold">
                 {toShortDateString(new Date(data.time[index]))}
             </div>
-            <div className="flex-1">
+            <div className="flex-3 text-left">
                 <span className="font-bold">
                     {data.temperature_2m_max[index]}
                 </span>
@@ -57,9 +63,11 @@ function DailyListItem({ data, index, isOpen, onItemToggle }:
                 </span>
                 °C
             </div>
-            <PrecipitationProbIcon value={data.precipitation_probability_max[index]} vertical={false} />
+            <div className="flex-2">
+                <PrecipitationProbIcon value={data.precipitation_probability_max[index]} vertical={false} />
+            </div>
         </button>
-        <div className="bg-sky-800 py-1 group-last:rounded-b-md
+        <div className="bg-sky-800 py-1 last:rounded-b-md
             data-[hidden=true]:hidden"
             data-hidden={!isOpen}>
             <div className="flex items-center pb-1">
@@ -89,5 +97,5 @@ function DailyListItem({ data, index, isOpen, onItemToggle }:
                 <SunsetIcon value={data.sunset[index]} />
             </div>
         </div>
-    </div>
+    </>
 }

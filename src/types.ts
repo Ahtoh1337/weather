@@ -105,8 +105,8 @@ export interface HourlyWeatherUnits {
     apparent_temperature: string
     precipitation_probability: string
     cloud_cover: string
-    wind_speed_80m: string
-    wind_direction_80m: string
+    wind_speed_10m: string
+    wind_direction_10m: string
     uv_index: string
 }
 
@@ -118,7 +118,7 @@ export interface HourlyWeather {
     apparent_temperature: number[]
     precipitation_probability: number[]
     cloud_cover: number[]
-    wind_speed_80m: number[]
-    wind_direction_80m: number[]
+    wind_speed_10m: number[]
+    wind_direction_10m: number[]
     uv_index: number[]
 }

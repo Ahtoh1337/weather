@@ -138,7 +138,8 @@ export function useDailyWeather(place: Place) {
                     "wind_speed_10m_max",
                     "wind_direction_10m_dominant"
                 ].join(","),
-                "timezone=auto"
+                "timezone=auto",
+                "forecast_days=14"
             ].join("&")
 
             const response = await fetch(`${import.meta.env.VITE_WEATHER_API}/forecast?${paramString}`);
@@ -165,8 +166,8 @@ export function useHourlyWeather(place: Place) {
                     "apparent_temperature",
                     "precipitation_probability",
                     "cloud_cover",
-                    "wind_speed_80m",
-                    "wind_direction_80m",
+                    "wind_speed_10m",
+                    "wind_direction_10m",
                     "uv_index",
                 ].join(","),
                 "timezone=auto",
