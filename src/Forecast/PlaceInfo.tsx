@@ -4,12 +4,13 @@ import { offsetTime, toAltDateString } from "../utils";
 
 export default function PlaceInfo({ place, weather }:
     { place: Place | City, weather: UseQueryResult<CurrentWeatherInfo, Error> }) {
-    const location = (place as City).id !== undefined
+    const city = place as City;
+    const location = city.name && city.country
         ? <>
             <span className="font-bold">
-                {(place as City).name}
+                {city.name}
             </span>
-            , {(place as City).country}
+            , {city.country}
         </>
         : <>Unknown</>
 

@@ -68,9 +68,7 @@ function HourlyListItem({ index, data, isOpen, onItemToggle }: WeatherListItemPr
             <PrecipitationProbIcon value={data.precipitation_probability[index]}
                 vertical={false} />
         </button>
-        <div className="bg-sky-800 py-1 px-2 last:rounded-b-md
-                data-[hidden=true]:hidden"
-            data-hidden={!isOpen}>
+        {isOpen && <div className="bg-sky-800 py-1 px-2 last:rounded-b-md">
             <table className="w-full">
                 <tbody className="text-sm">
                     <tr>
@@ -115,6 +113,6 @@ function HourlyListItem({ index, data, isOpen, onItemToggle }: WeatherListItemPr
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>}
     </>
 }
