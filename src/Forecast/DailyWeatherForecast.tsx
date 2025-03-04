@@ -68,9 +68,7 @@ function DailyListItem({ data, index, isOpen, onItemToggle }: WeatherListItemPro
                 <PrecipitationProbIcon value={data.precipitation_probability_max[index]} vertical={false} />
             </div>
         </button>
-        <div className="bg-sky-800 py-1 last:rounded-b-md
-            data-[hidden=true]:hidden"
-            data-hidden={!isOpen}>
+        {isOpen && <div className="bg-sky-800 py-1 last:rounded-b-md">
             <div className="flex items-center pb-1">
                 <WindIcon speed={data.wind_speed_10m_max[index]}
                     direction={data.wind_direction_10m_dominant[index]} />
@@ -97,6 +95,6 @@ function DailyListItem({ data, index, isOpen, onItemToggle }: WeatherListItemPro
                 <SunriseIcon value={data.sunrise[index]} />
                 <SunsetIcon value={data.sunset[index]} />
             </div>
-        </div>
+        </div>}
     </>
 }

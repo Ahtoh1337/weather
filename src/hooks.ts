@@ -61,7 +61,7 @@ export function useUserCity() {
                     "limit=1",
                     "offset=0",
                     "types=CITY",
-                    "radius=20",
+                    "radius=10",
                     "sort=-population",
                     `location=${toIsoCoord(coords.latitude)}${toIsoCoord(coords.longitude)}`
                 ].join("&")
