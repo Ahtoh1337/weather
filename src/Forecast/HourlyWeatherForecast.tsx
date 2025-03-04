@@ -3,7 +3,7 @@ import { HourlyWeather, HourlyWeatherInfo } from "../types";
 import { Fragment, useState } from "react";
 import { WeatherListItemProps } from "./DailyWeatherForecast";
 import { groupBy, toShortDateString, toShortTime } from "../utils";
-import { CloudIcon, HumidityIcon, PrecipitationProbIcon, UVIndexIcon, WindIcon, WindText } from "../Icons/WeatherIcons";
+import { CloudIcon, PrecipitationProbIcon, WindText } from "../Icons/WeatherIcons";
 
 export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryResult<HourlyWeatherInfo, Error> }) {
     const [expand, setExpand] = useState<number | null>(null);
@@ -23,15 +23,18 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
         }
     }
 
-    return <div className="pb-3">
-        <h2 className="text-2xl font-bold">
+    return <>
+        <h2 className="px-3 bg-sky-950 sticky top-14 z-5
+        text-2xl font-bold">
             Hourly
         </h2>
-        <div className="bg-sky-900 rounded-md drop-shadow-md">
+        <div className="bg-sky-900 rounded-md drop-shadow-md m-3 mt-0 overflow-clip">
             {weather.isPending && <>...</>}
             {weather.isSuccess && Object.keys(timeGroup).map(k =>
                 <Fragment key={k}>
-                    <h2 className="font-bold text-lg p-2 bg-sky-950/50">
+                    <h2 className='font-bold text-lg p-1.5
+                    sticky top-22
+                    blend'>
                         {k}
                     </h2>
                     {timeGroup[k].filter(t => new Date(t[1]) > new Date()).map(t => {
@@ -44,7 +47,7 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
                     })}
                 </Fragment>)}
         </div>
-    </div>
+    </>
 }
 
 function HourlyListItem({ index, data, isOpen, onItemToggle }: WeatherListItemProps<HourlyWeather>) {

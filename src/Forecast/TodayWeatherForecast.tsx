@@ -1,17 +1,26 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { DailyWeatherInfo } from "../types";
 import { SunriseIcon, SunsetIcon, WindText, } from "../Icons/WeatherIcons";
+import { toAltDateString } from "../utils";
 
 export default function TodayWeatherForecast({ weather }: { weather: UseQueryResult<DailyWeatherInfo, Error> }) {
     const data = weather.isSuccess
         ? weather.data.daily
         : null!;
 
-    return <div className="pb-3">
-        <h2 className="text-2xl font-bold">
-            Today
-        </h2>
-        <div className="flex flex-col py-4 px-2 gap-2
+    return <>
+        <div className="px-3 bg-sky-950 sticky top-14 z-5
+        flex justify-between items-baseline">
+            <h2 className="text-2xl font-bold">
+                Today
+            </h2>
+            <h2>
+                {weather.isSuccess
+                    ? <>{toAltDateString(new Date(data.time[0]))}</>
+                    : <>...</>}
+            </h2>
+        </div>
+        <div className="flex flex-col py-4 px-2 gap-2 m-3 mt-0
         bg-sky-900 rounded-md drop-shadow-md">
             {weather.isPending && <>...</>}
             {weather.isSuccess &&
@@ -80,5 +89,5 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
                     </table>
                 </>}
         </div>
-    </div>
+    </>
 }

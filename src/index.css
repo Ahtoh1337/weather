@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.blend {
+    background-color: color-mix(in oklab, var(--color-sky-950), var(--color-sky-900));
+}

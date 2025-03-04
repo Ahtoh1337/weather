@@ -8,8 +8,9 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
         ? weather.data.current
         : null!;
 
-    return <div className="pb-3">
-        <div className="flex justify-between items-baseline">
+    return <>
+        <div className="px-3 bg-sky-950 sticky top-14 z-5
+        flex justify-between items-baseline">
             <h2 className="text-2xl font-bold">
                 Current
             </h2>
@@ -19,7 +20,7 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
                     : <>...</>}
             </h2>
         </div>
-        <div className="flex py-4 px-2
+        <div className="flex py-4 px-2 m-3 mt-0
         bg-sky-900 rounded-md drop-shadow-md">
             {weather.isPending && <>...</>}
             {weather.isSuccess && <>
@@ -50,5 +51,5 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
                 </div>
             </>}
         </div>
-    </div>
+    </>
 }

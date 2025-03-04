@@ -13,7 +13,7 @@ export default function ForecastMain({ place }: { place: Place | City }) {
 
 
 
-    return <div className="p-3">
+    return <div className="pt-3">
         <PlaceInfo place={place} weather={currentWeather} />
         <CurrentWeatherForecast weather={currentWeather} />
         <TodayWeatherForecast weather={dailyWeather} />

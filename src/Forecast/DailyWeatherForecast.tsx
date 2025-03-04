@@ -19,11 +19,12 @@ export default function DailyWeatherForecast({ weather }: { weather: UseQueryRes
         }
     }
 
-    return <div className="pb-3">
-        <h2 className="text-2xl font-bold">
+    return <>
+        <h2 className="px-3 bg-sky-950 sticky top-14 z-5
+        text-2xl font-bold">
             Daily
         </h2>
-        <div className="bg-sky-900 rounded-md drop-shadow-md">
+        <div className="bg-sky-900 rounded-md drop-shadow-md m-3 mt-0">
             {weather.isPending && <>...</>}
             {weather.isSuccess && data?.time.map((t, i) => {
                 if (i === 0)
@@ -36,7 +37,7 @@ export default function DailyWeatherForecast({ weather }: { weather: UseQueryRes
                     onItemToggle={() => handleItemToggle(i)} />
             })}
         </div>
-    </div>
+    </>
 }
 
 export type WeatherListItemProps<T> = {

@@ -13,7 +13,7 @@ export default function PlaceInfo({ place, weather }:
         </>
         : <>Unknown</>
 
-    return <div className="text-lg py-2">
+    return <div className="text-lg py-2 mx-3">
         {location}
         ,{" "}
         {weather.isSuccess

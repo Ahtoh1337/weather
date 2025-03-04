@@ -16,10 +16,14 @@ export default function FindCity() {
     }, [id, city.isError])
 
     if (city.isPending)
-        return <h1>Loading...</h1>
+        return <h1 className="m-3 p-5 text-xl text-center">
+            ●●●
+        </h1>
 
     if (city.isError)
-        return <h1>Error</h1>
+        return <h1 className="m-3 p-5 text-xl text-center">
+            Error
+        </h1>
 
     return <ForecastMain place={city.data.data} />
 }

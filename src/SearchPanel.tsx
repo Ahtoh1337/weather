@@ -10,7 +10,7 @@ export default function SearchPanel() {
 
     return (
         <>
-            <div className="flex p-3 flex-col
+            <div className="flex px-3 pt-3 flex-col bg-sky-950
                 fixed z-10 w-full top-0 left-0">
                 <input
                     className="p-2 flex-1
@@ -21,13 +21,14 @@ export default function SearchPanel() {
                     value={searchText}
                     onChange={e => setSearchText(e.target.value)}
                     placeholder="Search..." />
-                <div className="bg-sky-900 rounded-md drop-shadow-lg">
+                <div className="bg-sky-900 rounded-md drop-shadow-lg hidden data-[show=true]:static"
+                    data-show={searchText !== ""}>
                     {cities.isPending &&
-                    <div className="text-center pb-4.5 pt-3 text-4xl">
-                        <span className="inline-block text-sky-50/70 animate-pulse">
-                            ●●●
-                        </span>
-                    </div>}
+                        <div className="text-center pb-4.5 pt-3 text-4xl">
+                            <span className="inline-block text-sky-50/70 animate-pulse">
+                                ●●●
+                            </span>
+                        </div>}
 
                     {cities.isSuccess && cities.data.data.map(c =>
                         <SearchListItem
