@@ -10,9 +10,14 @@ export default function UserCity() {
         </h1>
 
     if (city.isError)
-        return <h1 className="m-3 p-5 text-xl text-center">
-            Allow location access and refresh this page.
-        </h1>
+        return <div className="m-3 p-5">
+            <h1 className="text-xl">
+                Allow location access and refresh this page.
+            </h1>
+            <p className="text-sky-200 mt-2">
+                Or enter your city above.
+            </p>
+        </div>
 
     return <ForecastMain place={city.data} />
 }

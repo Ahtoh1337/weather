@@ -34,6 +34,7 @@ export default function SearchPanel() {
 
                         navigate(String(cities.data.data[0].id))
                         setSearchText("");
+                        (e.target as HTMLElement).blur();
                     }}
                     placeholder="Search..." />
                 <div className="bg-sky-900 rounded-md drop-shadow-lg data-[hidden=true]:hidden"
