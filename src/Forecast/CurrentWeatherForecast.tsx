@@ -4,6 +4,9 @@ import { CurrentWeatherInfo } from "../types";
 import { toShortTime } from "../utils";
 
 export default function CurrentWeatherForecast({ weather }: { weather: UseQueryResult<CurrentWeatherInfo, Error> }) {
+    const data = weather.isSuccess
+        ? weather.data.current
+        : null!;
 
     return <div className="pb-3">
         <div className="flex justify-between items-baseline">
@@ -12,7 +15,7 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
             </h2>
             <h2>
                 {weather.isSuccess
-                    ? <>As of {toShortTime(new Date(weather.data.current.time))}</>
+                    ? <>As of {toShortTime(new Date(data.time))}</>
                     : <>...</>}
             </h2>
         </div>
@@ -26,7 +29,7 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
                     <div>
                         <span className="text-5xl ">
                             <span className="font-bold">
-                                {weather.data.current.temperature_2m}
+                                {data.temperature_2m}
                             </span>
                             °C
                         </span>
@@ -34,16 +37,16 @@ export default function CurrentWeatherForecast({ weather }: { weather: UseQueryR
                     <div>
                         Apparent:{" "}
                         <span className="font-bold">
-                            {weather.data.current.apparent_temperature}
+                            {data.apparent_temperature}
                         </span>
                         °C
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-y-4 flex-3">
-                    <CloudIcon value={weather.data.current.cloud_cover} />
-                    <HumidityIcon value={weather.data.current.relative_humidity_2m} />
-                    <PrecipitationIcon value={weather.data.current.precipitation} />
-                    <WindIcon speed={weather.data.current.wind_speed_10m} direction={weather.data.current.wind_direction_10m} />
+                    <CloudIcon value={data.cloud_cover} />
+                    <HumidityIcon value={data.relative_humidity_2m} />
+                    <PrecipitationIcon value={data.precipitation} />
+                    <WindIcon speed={data.wind_speed_10m} direction={data.wind_direction_10m} />
                 </div>
             </>}
         </div>

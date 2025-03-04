@@ -1,6 +1,6 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { City, CurrentWeatherInfo, Place } from "../types";
-import { offsetTime, toShortDate } from "../utils";
+import { offsetTime, toAltDateString } from "../utils";
 
 export default function PlaceInfo({ place, weather }:
     { place: Place | City, weather: UseQueryResult<CurrentWeatherInfo, Error> }) {
@@ -17,7 +17,7 @@ export default function PlaceInfo({ place, weather }:
         {location}
         ,{" "}
         {weather.isSuccess
-            ? toShortDate(offsetTime(weather.data.utc_offset_seconds))
+            ? toAltDateString(offsetTime(weather.data.utc_offset_seconds))
             : "..."}
     </div>
 }

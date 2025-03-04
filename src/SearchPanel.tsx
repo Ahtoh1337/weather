@@ -10,8 +10,8 @@ export default function SearchPanel() {
 
     return (
         <>
-            <div className="flex p-3 flex-col gap-1
-                fixed w-full top-0 left-0">
+            <div className="flex p-3 flex-col
+                fixed z-10 w-full top-0 left-0">
                 <input
                     className="p-2 flex-1
                 bg-sky-900 rounded-md

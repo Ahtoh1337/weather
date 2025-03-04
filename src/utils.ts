@@ -41,7 +41,7 @@ export function offsetTime(offset: number) {
 }
 
 export function toShortTime(date: Date): string {
-    return `${date.getHours()}:${String(date.getSeconds()).padStart(2, "0")}`;
+    return `${date.getHours()}:${String(date.getMinutes()).padStart(2, "0")}`;
 }
 
 const weekDays = [
@@ -66,8 +66,26 @@ const months = [
     "Oct",
     "Nov",
     "Dec"
+];
+const monthsLong = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
 ]
 
-export function toShortDate(date: Date): string {
-    return `${weekDays[date.getDay()]} ${String(date.getDate()).padStart(2, "0")} ${months[date.getMonth()]}`
+export function toAltDateString(date: Date): string {
+    return `${weekDays[date.getDay()]} ${String(date.getDate()).padStart(2, "0")} ${monthsLong[date.getMonth()]}`
+}
+
+export function toShortDateString(date: Date): string {
+    return `${months[date.getMonth()]} ${date.getDate()} ${weekDays[date.getDay()]}`
 }
