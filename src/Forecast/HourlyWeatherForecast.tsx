@@ -33,7 +33,7 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
             {weather.isSuccess && Object.keys(timeGroup).map(k =>
                 <Fragment key={k}>
                     <h2 className='font-bold text-lg p-1.5
-                    sticky top-22
+                    sticky top-21.5
                     blend'>
                         {k}
                     </h2>
