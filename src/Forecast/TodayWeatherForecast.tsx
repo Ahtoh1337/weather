@@ -9,7 +9,7 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
         : null!;
 
     return <>
-        <div className="px-3 bg-sky-950 sticky top-14 z-5
+        <div className="px-3 bg-sky-950 sticky top-13.5 z-5
         flex justify-between items-baseline">
             <h2 className="text-2xl font-bold">
                 Today

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useCitiesByName } from "./hooks";
 import { City } from "./types";
 
@@ -7,6 +7,7 @@ export default function SearchPanel() {
     const [searchText, setSearchText] = useState("");
 
     const cities = useCitiesByName(searchText, 500);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -20,6 +21,20 @@ export default function SearchPanel() {
                     type="search"
                     value={searchText}
                     onChange={e => setSearchText(e.target.value)}
+                    onKeyDown={e => {
+                        if (e.key !== "Enter")
+                            return;
+
+                        if (!cities.isSuccess)
+                            return;
+
+                        if (cities.data.data.length === 0)
+                            return;
+
+
+                        navigate(String(cities.data.data[0].id))
+                        setSearchText("");
+                    }}
                     placeholder="Search..." />
                 <div className="bg-sky-900 rounded-md drop-shadow-lg data-[hidden=true]:hidden"
                     data-hidden={searchText === ""}>
@@ -30,7 +45,7 @@ export default function SearchPanel() {
                             </span>
                         </div>}
 
-                    {cities.isSuccess && cities.data.data.map((c, i) =>
+                    {cities.isSuccess && cities.data.data.map(c =>
                         <SearchListItem
                             key={c.id}
                             city={c}
