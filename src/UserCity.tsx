@@ -14,7 +14,7 @@ export default function UserCity() {
             <h1 className="text-xl">
                 Allow location access and refresh this page.
             </h1>
-            <p className="text-sky-200 mt-2">
+            <p className="text-blue-400 dark:text-sky-200 mt-2">
                 Or enter your city above.
             </p>
         </div>

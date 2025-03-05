@@ -2,6 +2,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-.blend {
-    background-color: color-mix(in oklab, var(--color-sky-950), var(--color-sky-900));
+.dark\:blend {
+    &:where(.dark, .dark *) {
+        background-color: color-mix(in oklab, var(--color-sky-950), var(--color-sky-900));
+    }
 }

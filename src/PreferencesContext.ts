@@ -61,6 +61,10 @@ export function usePreferencesInit(): [Preferences, React.Dispatch<PreferencesRe
 
     useEffect(() => {
         localStorage.setItem("Preferences", JSON.stringify(state));
+        if (state.theme === "light")
+            document.querySelector("body")?.classList.remove("dark")
+        else
+            document.querySelector("body")?.classList.add("dark")
     }, [state])
 
     return [state, dispatch];

@@ -24,11 +24,13 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
     }
 
     return <>
-        <h2 className="px-3 pt-1 bg-sky-950 sticky top-13.5 z-5
-        text-2xl font-bold">
+        <h2 className="px-3 pt-1 sticky top-13.5 z-5
+        text-2xl font-bold
+        bg-blue-200 dark:bg-sky-950">
             Hourly
         </h2>
-        <div className="bg-sky-900 rounded-md m-3 mt-0 overflow-clip">
+        <div className="rounded-md m-3 mt-0 overflow-clip
+        bg-blue-300 dark:bg-sky-900">
             {weather.isPending && <>...</>}
             {weather.isSuccess && Object.keys(timeGroup).map(k => {
                 if (timeGroup[k].length === 0)
@@ -37,7 +39,7 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
                 return <Fragment key={k}>
                     <h2 className='font-bold text-lg p-1.5 pb-1
                         sticky top-22.5
-                        blend'>
+                        bg-blue-400 dark:blend'>
                         {k}
                     </h2>
                     {timeGroup[k].filter(t => new Date(t[1]) > new Date()).map(t => {
@@ -73,7 +75,8 @@ function HourlyListItem({ index, data, isOpen, onItemToggle }: WeatherListItemPr
             <PrecipitationProbIcon value={data.precipitation_probability[index]}
                 vertical={false} />
         </button>
-        {isOpen && <div className="bg-sky-800 py-1 px-2 last:rounded-b-md">
+        {isOpen && <div className="py-1 px-2 last:rounded-b-md
+        bg-blue-400/50 dark:bg-sky-800">
             <table className="w-full">
                 <tbody className="text-sm">
                     <tr>

@@ -9,8 +9,9 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
         : null!;
 
     return <>
-        <div className="px-3 pt-1 bg-sky-950 sticky top-13.5 z-5
-        flex justify-between items-baseline">
+        <div className="px-3 pt-1 sticky top-13.5 z-5
+        flex justify-between items-baseline
+        bg-blue-200 dark:bg-sky-950">
             <h2 className="text-2xl font-bold">
                 Today
             </h2>
@@ -21,12 +22,12 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
             </h2>
         </div>
         <div className="flex flex-col py-4 px-2 gap-2 m-3 mt-0
-        bg-sky-900 rounded-md">
+        bg-blue-300 dark:bg-sky-900 rounded-md">
             {weather.isPending && <>...</>}
             {weather.isSuccess &&
                 <>
                     <div className="flex items-center justify-around
-                    border-b-1 border-sky-950/70 pb-3 pl-2">
+                    border-b-1 border-blue-400 dark:border-sky-950/70 pb-3 pl-2">
                         <div className="text-4xl flex-1">
                             <span className="font-bold">
                                 {data.temperature_2m_max[0]}
@@ -55,7 +56,7 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
                         </div>
                     </div>
                     <div className="flex justify-around items-center px-10 py-1
-                    border-b-1 border-sky-950/70">
+                    border-b-1 border-blue-400 dark:border-sky-950/70">
                         <SunriseIcon value={data.sunrise[0]} />
                         <SunsetIcon value={data.sunset[0]} />
                     </div>
