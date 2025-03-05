@@ -3,9 +3,12 @@ export interface Place {
     longitude: number
 }
 
-export interface City extends Place {
-    id: number
-    name: string,
+export interface NamedLocation {
+    id: number,
+    name: string
+}
+
+export interface City extends Place, NamedLocation {
     country: string,
 }
 
@@ -16,6 +19,8 @@ export interface CityCollectionResponse {
 export interface CityResponse {
     data: City
 }
+
+
 
 export interface WeatherInfo extends Place {
     utc_offset_seconds: number,
