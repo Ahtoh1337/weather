@@ -13,10 +13,10 @@ export default function SearchPanel() {
 
     return (
         <>
-            <div className="flex  flex-col
-                fixed z-10 w-full top-0 left-0">
+            <div className="fixed z-10 w-full top-0 left-0">
                 <div className="flex gap-2 px-3 pt-3
-                bg-blue-200 dark:bg-sky-950">
+                bg-blue-200 dark:bg-sky-950
+                sm:max-w-200 sm:mx-auto">
                     <input
                         className="p-2 flex-1 rounded-md border-2
                 bg-blue-300 dark:bg-sky-900
@@ -52,23 +52,25 @@ export default function SearchPanel() {
                         {prefs.theme === "light" ? "🌞" : "🌚"}
                     </button>
                 </div>
-                <div className="rounded-md drop-shadow-lg mx-3
-                bg-blue-400 dark:bg-sky-800
-                data-[hidden=true]:hidden"
+                <div className="data-[hidden=true]:hidden px-3
+                sm:max-w-200 sm:mx-auto"
                     data-hidden={searchText === ""}>
-                    {cities.isPending &&
-                        <div className="text-center pb-4.5 pt-3 text-4xl">
-                            <span className="inline-block animate-pulse
+                    <div className="rounded-md drop-shadow-lg
+                bg-blue-300 dark:bg-sky-800">
+                        {cities.isPending &&
+                            <div className="text-center pb-4.5 pt-3 text-4xl">
+                                <span className="inline-block animate-pulse
                             text-blue-600 dark:text-sky-200">
-                                ●●●
-                            </span>
-                        </div>}
+                                    ●●●
+                                </span>
+                            </div>}
 
-                    {cities.isSuccess && cities.data.data.map(c =>
-                        <SearchListItem
-                            key={c.id}
-                            city={c}
-                            onClick={() => setSearchText("")} />)}
+                        {cities.isSuccess && cities.data.data.map(c =>
+                            <SearchListItem
+                                key={c.id}
+                                city={c}
+                                onClick={() => setSearchText("")} />)}
+                    </div>
                 </div>
             </div>
         </>
@@ -79,7 +81,7 @@ function SearchListItem({ city, onClick }:
     { city: City, onClick: () => void }) {
     return <NavLink className="block p-2.5 text-sm font-bold
         not-last:border-b-1
-        border-blue-500 dark:border-sky-600"
+        border-blue-400 dark:border-sky-600"
         to={String(city.id)}
         onClick={onClick}>
         {city.name}

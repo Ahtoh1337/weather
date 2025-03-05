@@ -25,7 +25,8 @@ export default function DailyWeatherForecast({ weather }: { weather: UseQueryRes
         bg-blue-200 dark:bg-sky-950">
             Daily
         </h2>
-        <div className="bg-blue-300 dark:bg-sky-900 rounded-md m-3 mt-0">
+        <div className="bg-blue-300 dark:bg-sky-900
+        rounded-md m-3 mt-0 overflow-clip">
             {weather.isPending && <>...</>}
             {weather.isSuccess && data?.time.map((t, i) => {
                 if (i === 0)
@@ -50,7 +51,11 @@ export type WeatherListItemProps<T> = {
 
 function DailyListItem({ data, index, isOpen, onItemToggle }: WeatherListItemProps<DailyWeather>) {
     return <>
-        <button className="w-full flex px-2 py-2 gap-3"
+        <button className="w-full flex px-2 py-2 gap-3
+        outline-none
+        sm:hover:bg-blue-400/30 sm:dark:hover:bg-sky-950/20
+        active:bg-blue-400/30 sm:active:bg-blue-400/50
+        active:dark:bg-sky-950/20 sm:active:dark:bg-sky-950/40"
             onClick={onItemToggle}>
             <div className="flex-3 text-left font-bold">
                 {toShortDateString(new Date(data.time[index]))}

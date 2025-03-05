@@ -14,9 +14,11 @@ export default function ForecastMain({ place }: { place: Place | City }) {
 
 
     return <div className="pt-3">
-        <PlaceInfo place={place} weather={currentWeather} />
-        <CurrentWeatherForecast weather={currentWeather} />
-        <TodayWeatherForecast weather={dailyWeather} />
+        <PlaceInfo place={place} />
+        <div className="sm:grid grid-cols-5">
+            <CurrentWeatherForecast weather={currentWeather} />
+            <TodayWeatherForecast weather={dailyWeather} />
+        </div>
         <DailyWeatherForecast weather={dailyWeather} />
         <HourlyWeatherForeceast weather={hourlyWeather} />
     </div>

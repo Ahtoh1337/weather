@@ -59,7 +59,11 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
 
 function HourlyListItem({ index, data, isOpen, onItemToggle }: WeatherListItemProps<HourlyWeather>) {
     return <>
-        <button className="w-full flex px-2 py-2 gap-2"
+        <button className="w-full flex px-2 py-2 gap-2
+        outline-none
+        sm:hover:bg-blue-400/30 sm:dark:hover:bg-sky-950/20
+        active:bg-blue-400/30 sm:active:bg-blue-400/50
+        active:dark:bg-sky-950/20 sm:active:dark:bg-sky-950/40"
             onClick={onItemToggle}>
             <div className="flex-1 text-left font-bold">
                 {toShortTime(new Date(data.time[index]))}

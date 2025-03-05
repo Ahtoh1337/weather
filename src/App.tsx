@@ -15,7 +15,7 @@ function App() {
       <PreferencesContext.Provider value={preferences}>
         <BrowserRouter>
         <SearchPanel />
-            <div className="mt-12">
+            <div className="mt-12 sm:max-w-200 sm:mx-auto">
               <Routes>
                 <Route path="/" element={<UserCity />} />
                 <Route path=":id" element={<FindCity />} />
