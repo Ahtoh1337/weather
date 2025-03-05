@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 .blend {
     background-color: color-mix(in oklab, var(--color-sky-950), var(--color-sky-900));
 }
