@@ -24,17 +24,20 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
     }
 
     return <>
-        <h2 className="px-3 bg-sky-950 sticky top-13.5 z-5
+        <h2 className="px-3 pt-1 bg-sky-950 sticky top-13.5 z-5
         text-2xl font-bold">
             Hourly
         </h2>
-        <div className="bg-sky-900 rounded-md drop-shadow-md m-3 mt-0 overflow-clip">
+        <div className="bg-sky-900 rounded-md m-3 mt-0 overflow-clip">
             {weather.isPending && <>...</>}
-            {weather.isSuccess && Object.keys(timeGroup).map(k =>
-                <Fragment key={k}>
-                    <h2 className='font-bold text-lg p-1.5
-                    sticky top-21.5
-                    blend'>
+            {weather.isSuccess && Object.keys(timeGroup).map(k => {
+                if (timeGroup[k].length === 0)
+                    return null;
+
+                return <Fragment key={k}>
+                    <h2 className='font-bold text-lg p-1.5 pb-1
+                        sticky top-22.5
+                        blend'>
                         {k}
                     </h2>
                     {timeGroup[k].filter(t => new Date(t[1]) > new Date()).map(t => {
@@ -45,7 +48,9 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
                             isOpen={t[0] === expand}
                             onItemToggle={() => handleItemToggle(t[0])} />
                     })}
-                </Fragment>)}
+                </Fragment>
+            }
+            )}
         </div>
     </>
 }

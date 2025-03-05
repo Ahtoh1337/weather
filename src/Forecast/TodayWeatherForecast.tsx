@@ -9,7 +9,7 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
         : null!;
 
     return <>
-        <div className="px-3 bg-sky-950 sticky top-13.5 z-5
+        <div className="px-3 pt-1 bg-sky-950 sticky top-13.5 z-5
         flex justify-between items-baseline">
             <h2 className="text-2xl font-bold">
                 Today
@@ -21,7 +21,7 @@ export default function TodayWeatherForecast({ weather }: { weather: UseQueryRes
             </h2>
         </div>
         <div className="flex flex-col py-4 px-2 gap-2 m-3 mt-0
-        bg-sky-900 rounded-md drop-shadow-md">
+        bg-sky-900 rounded-md">
             {weather.isPending && <>...</>}
             {weather.isSuccess &&
                 <>

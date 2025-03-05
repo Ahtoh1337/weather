@@ -20,11 +20,11 @@ export default function DailyWeatherForecast({ weather }: { weather: UseQueryRes
     }
 
     return <>
-        <h2 className="px-3 bg-sky-950 sticky top-13.5 z-5
+        <h2 className="px-3 pt-1 bg-sky-950 sticky top-13.5 z-5
         text-2xl font-bold">
             Daily
         </h2>
-        <div className="bg-sky-900 rounded-md drop-shadow-md m-3 mt-0">
+        <div className="bg-sky-900 rounded-md m-3 mt-0">
             {weather.isPending && <>...</>}
             {weather.isSuccess && data?.time.map((t, i) => {
                 if (i === 0)
