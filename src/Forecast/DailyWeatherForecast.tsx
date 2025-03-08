@@ -54,8 +54,8 @@ function DailyListItem({ data, index, isOpen, onItemToggle }: WeatherListItemPro
         <button className="w-full flex px-2 py-2 gap-3
         outline-none
         sm:hover:bg-blue-400/30 sm:dark:hover:bg-sky-950/20
-        active:bg-blue-400/30 sm:active:bg-blue-400/50
-        active:dark:bg-sky-950/20 sm:active:dark:bg-sky-950/40"
+        sm:active:bg-blue-400/50
+        sm:active:dark:bg-sky-950/40"
             onClick={onItemToggle}>
             <div className="flex-3 text-left font-bold">
                 {toShortDateString(new Date(data.time[index]))}

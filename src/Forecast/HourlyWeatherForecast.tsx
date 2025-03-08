@@ -33,9 +33,6 @@ export default function HourlyWeatherForeceast({ weather }: { weather: UseQueryR
         bg-blue-300 dark:bg-sky-900">
             {weather.isPending && <>...</>}
             {weather.isSuccess && Object.keys(timeGroup).map(k => {
-                if (timeGroup[k].length === 0)
-                    return null;
-
                 return <Fragment key={k}>
                     <h2 className='font-bold text-lg p-1.5 pb-1
                         sticky top-22.5
@@ -62,8 +59,8 @@ function HourlyListItem({ index, data, isOpen, onItemToggle }: WeatherListItemPr
         <button className="w-full flex px-2 py-2 gap-2
         outline-none
         sm:hover:bg-blue-400/30 sm:dark:hover:bg-sky-950/20
-        active:bg-blue-400/30 sm:active:bg-blue-400/50
-        active:dark:bg-sky-950/20 sm:active:dark:bg-sky-950/40"
+        sm:active:bg-blue-400/50
+        sm:active:dark:bg-sky-950/40"
             onClick={onItemToggle}>
             <div className="flex-1 text-left font-bold">
                 {toShortTime(new Date(data.time[index]))}
