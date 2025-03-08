@@ -2,14 +2,17 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 import { useCitiesByName } from "./hooks";
 import { City } from "./types";
-import usePreferences from "./PreferencesContext";
 
-export default function SearchPanel() {
+type SearchPanelProps = {
+    showSidebar: boolean,
+    setShowSidebar: (value: boolean) => void
+}
+
+export default function SearchPanel({ showSidebar, setShowSidebar }: SearchPanelProps) {
     const [searchText, setSearchText] = useState("");
 
     const cities = useCitiesByName(searchText, 500);
     const navigate = useNavigate();
-    const [prefs, dispatch] = usePreferences();
 
     return (
         <>
@@ -43,13 +46,14 @@ export default function SearchPanel() {
                         }}
                         placeholder="Search..." />
                     <button className="border-2 rounded-md
-                    h-11 w-11 overflow-clip text-2xl
-                    border-blue-500 dark:border-sky-700"
-                        onClick={() => dispatch({
-                            type: "changeTheme",
-                            nextTheme: prefs.theme === "light" ? "dark" : "light"
-                        })}>
-                        {prefs.theme === "light" ? "🌞" : "🌚"}
+                    h-11 w-11 overflow-clip
+                    text-5xl leading-0 font-bold
+                    border-blue-500 dark:border-sky-700 xl:hidden"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setShowSidebar(!showSidebar)
+                        }}>
+                        {showSidebar ? "×" : "="}
                     </button>
                 </div>
                 <div className="data-[hidden=true]:hidden px-3
