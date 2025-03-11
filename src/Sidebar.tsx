@@ -11,18 +11,19 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(function ({ show, setSh
     const [prefs, dispatch] = usePreferences();
 
     return <div ref={ref} data-show={show}
-        className="fixed top-0 right-0 w-55 h-[100vh] xl:h-auto z-9
+        className="fixed top-0 right-0 w-55 h-[100vh] xl:h-auto z-9 xl:z-11
         flex flex-col bg-linear-to-l
         bg-blue-300 to-blue-400/70
         dark:bg-sky-800 dark:to-transparent
         data-[show=false]:-right-55
         transition-[right]
-        xl:absolute xl:-right-55
+
+        xl:absolute xl:-right-55 xl:-top-9.5
         xl:to-transparent xl:bg-blue-200 dark:xl:bg-sky-950
         xl:transition-none">
-        <div className="bg-blue-200 dark:bg-sky-950 h-17 flex-none xl:h-14" />
+        <div className="bg-blue-200 dark:bg-sky-950 h-17 flex-none xl:hidden" />
         <div className="p-2 flex gap-1 items-center text-xl
-        justify-center xl:justify-start">
+        justify-center xl:justify-start xl:mb-20">
             🌞
             <button className="relative border-2 rounded-full
             border-blue-500 dark:border-sky-950 xl:dark:border-sky-800
@@ -42,7 +43,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(function ({ show, setSh
         </div>
         <ul className="overflow-y-auto">
             {prefs.savedLocations.length === 0
-                ? <p className="p-3 text-sm text-sky-300">
+                ? <p className="p-3 text-sm text-blue-800 dark:text-sky-300 xl:hidden">
                     You have no saved cities...
                 </p>
                 : prefs.savedLocations.slice()
