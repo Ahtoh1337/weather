@@ -32,6 +32,7 @@ export default function PlaceInfo({ place }:
         {isCity ? <>
             <button className="outline-2 outline-blue-300 data-[saved=true]:outline-blue-400
             dark:outline-sky-800 data-[saved=true]:dark:outline-sky-700
+            data-[saved=true]:bg-blue-300/60 dark:data-[saved=true]:bg-transparent 
             h-7 w-7 rounded-md
             data-[saved=false]:text-white/50
             sm:active:bg-blue-400 sm:active:outline-blue-400 sm:hover:bg-blue-300

@@ -50,7 +50,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(function ({ show, setSh
                     .sort((a, b) => a.name.localeCompare(b.name))
                     .map(l => <NavLink className="block overflow-clip
                         pl-4 py-1.5 font-bold text-lg lg:hover:underline
-                        text-blue-800 xl:text-blue-500/80 dark:text-sky-200 xl:dark:text-sky-300/50"
+                        text-blue-800 xl:text-blue-600/60 dark:text-sky-200 xl:dark:text-sky-300/50"
                         key={l.id} to={String(l.id)}
                         onClick={() => setShow(false)}>
                         {l.name}
