@@ -30,8 +30,10 @@ export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
                 throw new Error(`Network error (${response.status} ${response.statusText})`);
 
             return await response.json() as CityCollectionResponse;
-        }
-    });
+        },
+        refetchOnMount: false
+    }
+    );
 }
 
 export function useCityById(id: number) {
@@ -45,7 +47,7 @@ export function useCityById(id: number) {
 
             return await response.json() as CityResponse;
         },
-        retry: false
+        refetchOnMount: false,
     })
 }
 
@@ -84,7 +86,9 @@ export function useUserCity() {
                 return result.data[0];
             })
         },
-        retry: false
+        retry: false,
+        refetchOnMount: false,
+        refetchInterval: 30_000
     });
 }
 
@@ -114,7 +118,8 @@ export function useCurrentWeather(place: Place) {
 
             return await response.json() as CurrentWeatherInfo;
         },
-        refetchInterval: 900_000
+        refetchOnMount: false,
+        refetchInterval: 300_000
     })
 }
 
@@ -148,7 +153,9 @@ export function useDailyWeather(place: Place) {
                 throw new Error(`Network error (${response.status} ${response.statusText})`);
 
             return await response.json() as DailyWeatherInfo;
-        }
+        },
+        refetchOnMount: false,
+        refetchInterval: 300_000
     });
 }
 
@@ -180,6 +187,8 @@ export function useHourlyWeather(place: Place) {
                 throw new Error(`Network error (${response.status} ${response.statusText})`);
 
             return await response.json() as HourlyWeatherInfo;
-        }
+        },
+        refetchOnMount: false,
+        refetchInterval: 300_000
     })
 }
