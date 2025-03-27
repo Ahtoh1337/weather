@@ -20,6 +20,9 @@ export function useCitiesByName(namePrefix: string, waitTime: number = 0) {
 
             await wait(waitTime);
 
+            if (signal.aborted)
+                return { data: [] };
+
             const response = await fetch(`${import.meta.env.VITE_CITY_API}/cities?${paramString}`,
                 {
                     signal
